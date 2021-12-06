@@ -1,0 +1,43 @@
+{%extends 'base.html'%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{%block title%}Login{%endblock%}</title>
+</head>
+<body>
+    {%block content%}
+        <div class="row" align="center">
+            <div class="col-md-12 p-5">
+                <div class="col-md-4 col-md-offset-4 p-4" align="left" style="background-color:#f0f0f0">
+                    <form method="POST" class="login-form" action="{% url 'users:authenticate'%}">
+                        {% csrf_token %}
+                            {% if messages %}
+                                <ul class="messages">
+                                    {% for message in messages %}
+                                    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                                <h2 align="center">Sign In</h2>
+                                <div class="control-group">
+                                    <input type="text" class="form-control wd-350" value="" placeholder="Enter Username" name="username"  required>
+                                </div>
+                                <br>
+                                <div class="control-group">
+                                    <input type="password" class="form-control wd-350" value="" placeholder="Enter Password" name="password"  required>
+                                </div>
+                                <br>
+
+                                <input type="submit" value="Login" name="submit_form" class="btn btn-primary btn-login btn-block">
+                                <br>
+                                <br>
+                                <p> Don't have an account? <a href="{%url 'users:signup'%}">Sign Up</a></p>
+                                <a href="#">Forgot your password</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    {%endblock%}
+</body>
+</html>

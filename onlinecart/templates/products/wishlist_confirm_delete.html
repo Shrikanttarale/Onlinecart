@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Delete wishlist</title>
+</head>
+<body>
+    {% load static%}
+
+    <form method="post" action="">
+        {% csrf_token%}
+        <div class="modal-header">
+            <h3 class="modal-title">Delete report</h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                <span aria-hidden="true">x</span>
+            </button>
+
+        </div>
+    <div class="modal-body">
+        <p> Are you sure you want to remove item? <strong>{{ object.wishlist_product.product_name | upper}}</strong> from wishlist</p>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-danger">Delete</button>
+
+    </div>
+
+
+    </form>
+</body>
+</html>

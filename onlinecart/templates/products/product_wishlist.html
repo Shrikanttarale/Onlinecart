@@ -1,0 +1,49 @@
+{%extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{%block title%}Home{%endblock%}</title>
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    {%block content%}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row" style="overflow:hidden;">
+                    {%for product in products%}
+                        <div class="col-sm-2">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <a href="{%url 'products:product_detail_view' product.id%}">
+                                        <div class="thumbnail" style="border: 5px solid #ddd;">
+                                            <img src="{{product.wishlist_product.product_photo.url}}" height="170px" width="170px" alt="Product Image" align="middle">
+                                      <!--      <div class="caption text-center">
+                                                {% if product.product_type == "V"%}
+                                                    <p></p>Vegitable</p>
+                                                {%else%}
+                                                    <p>Fruits</p>
+                                                {%endif%}
+                                            </div>-->
+                                            <div class="caption text-center">
+                                                <p>{{product.wishlist_product.product_name}}</p>
+                                            </div>
+                                            <div>
+                                                <p>Rs.{{product.wishlist_product.product_price}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{product.wishlist_product.product_qty_type}}</p>
+                                                <a href="{%url 'products:remove_wishlist_item' product.id%}">Remove</a>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    {%endfor%}
+
+                </div>
+            </div>
+        </div>
+
+    {%endblock%}
+
+</body>
+</html>
